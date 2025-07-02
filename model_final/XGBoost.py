@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, accuracy_score
 
+# 데이터 정규화
 def normalize_url(url):
     url = url.strip()
     url = re.sub(r'^https?://', '', url)  # http:// 또는 https:// 제거
