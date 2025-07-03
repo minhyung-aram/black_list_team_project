@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pandas as pd
 import joblib
 import os
@@ -32,19 +31,16 @@ def check_black_list(url):
         return check_t_f
     
 # blacklist가 있는지 확인
-=======
 import joblib, os, pandas as pd, streamlit as st, numpy as np
 from preprocess import extract_url_features
 
 # 블랙리스트 파일 존재 확인
->>>>>>> ab1b090fb6230e7d8a646983a0e3912ee63b347c
 def load_blacklist():
     if not os.path.exists("blacklist.csv"):
         df = pd.Series([], name="url")
         df.to_csv("blacklist.csv")
     return pd.read_csv("blacklist.csv", names=["url"])
 
-<<<<<<< HEAD
 def save_csv(df):
     df.to_csv("blacklist.csv", index=False, header=False)
 
@@ -58,7 +54,6 @@ def model_call(url):
 
     return prediction[0]
 
-=======
 def check_black_list(url):
     '''
     사용자로부터 URL을 받았을 때 블랙리스트를 검사하고 
@@ -109,4 +104,3 @@ def model_call(url):
     prediction = model.predict(features_array)
 
     return prediction[0]
->>>>>>> ab1b090fb6230e7d8a646983a0e3912ee63b347c
