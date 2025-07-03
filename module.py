@@ -1,7 +1,7 @@
 import pandas as pd
 import joblib
 import os
-from model_final.XGBoost import extract_url_features
+from preprocess import extract_url_features
 import numpy as np
 
 def check_black_list(url):
