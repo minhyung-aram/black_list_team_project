@@ -82,7 +82,7 @@ if user_prompt :
     }]
     context.append({'role' : 'user', 'content' : user_prompt})
     response = client.responses.create(
-        model="gpt-4.1",
+        model="gpt-4o",
         input=context,
         tools=tools,
         tool_choice="auto"
@@ -93,7 +93,7 @@ if user_prompt :
     context.extend(answer)
 
     final_response = client.responses.create(
-        model="gpt-4.1",
+        model="gpt-4o",
         input=context,
         tools=tools,
         tool_choice="auto")
