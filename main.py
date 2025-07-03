@@ -4,6 +4,7 @@ import json
 import openai
 from dotenv import load_dotenv
 import os
+import importlib
 
 load_dotenv()
 
@@ -37,8 +38,11 @@ def function_call(calls):
             continue   
         try :
             result.append(call)
+            function_modules = importlib.import_module("module")
+            function_name = call.name
+            func = getattr(function_modules, function_name)
             function_args = json.loads(call.arguments)
-            output = check_black_list(**function_args)
+            output = func(**function_args)
             result.append({
                 "call_id": call.call_id,
                 "type": "function_call_output",
