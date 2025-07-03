@@ -51,7 +51,7 @@ def function_call(calls):
             result.append({
                 "call_id": call.call_id,
                 "type": "function_call_output",
-                "output": e
+                "output": str(e)
             })
     return result
 
