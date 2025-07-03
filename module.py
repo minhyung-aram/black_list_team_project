@@ -1,12 +1,16 @@
-import pandas as pd
-import joblib
-import os
+import joblib, os, pandas as pd, streamlit as st, numpy as np
 from preprocess import extract_url_features
-import numpy as np
+
+# 블랙리스트 파일 존재 확인
+def load_blacklist():
+    if not os.path.exists("blacklist.csv"):
+        df = pd.Series([], name="url")
+        df.to_csv("blacklist.csv")
+    return pd.read_csv("blacklist.csv", names=["url"])
 
 def check_black_list(url):
     '''
-    사용자로부터 url을 받았을 때 블랙리스트를 검사하고 
+    사용자로부터 URL을 받았을 때 블랙리스트를 검사하고 
     블랙리스트에 없으면 ML 모델을 통해 검사하고 결과를 주는 함수입니다.
     '''
     black_list_df = load_blacklist()
@@ -17,7 +21,7 @@ def check_black_list(url):
         black_list = []
     
     if url in black_list:
-        return "해당 url은 블랙리스트에 존재하여 악성코드입니다."
+        return "해당 URL은 블랙리스트에 존재하는 악성 URL입니다."
     
     check_t_f = model_call(url)
     
@@ -31,13 +35,6 @@ def check_black_list(url):
     else:
         return check_t_f
     
-# blacklist가 있는지 확인
-def load_blacklist():
-    if not os.path.exists("blacklist.csv"):
-        df = pd.Series([], name="url")
-        df.to_csv("blacklist.csv")
-    return pd.read_csv("blacklist.csv", names=["url"])
-
 def save_csv(df):
     df.to_csv("blacklist.csv", index=False, header=False)
 
