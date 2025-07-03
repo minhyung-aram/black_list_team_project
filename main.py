@@ -1,5 +1,3 @@
-from preprocess import extract_url_features
-from module import check_black_list
 import json
 import openai
 from dotenv import load_dotenv
@@ -73,9 +71,8 @@ response = client.responses.create(
     tools=tools,
     tool_choice="auto"
 )
-print(context)
+
 answer = function_call(response.output)
-print(answer)
 context.extend(answer)
 
 final_response = client.responses.create(
@@ -84,4 +81,4 @@ final_response = client.responses.create(
     tools=tools,
     tool_choice="auto")
 
-print("마지막 대답:", final_response.output_text)
+print(final_response.output_text)
