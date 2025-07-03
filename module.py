@@ -42,7 +42,7 @@ def save_csv(df):
     df.to_csv("blacklist.csv", index=False, header=False)
 
 def model_call(url):
-    model = joblib.load("model_final/XGBoost_model.pkl")
+    model = joblib.load("XGBoost_model.pkl")
 
     features_dict = extract_url_features(url) # 변수명을 features_dict로 변경하여 혼동 방지
     features_array = np.array(list(features_dict.values())).reshape(1, -1)
