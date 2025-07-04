@@ -33,7 +33,7 @@ def check_black_list(url):
         # 블랙리스트에 추가
         black_list.append(url)
         # df로 만들어서
-        df = pd.Series(black_list, name="url").to_frame()
+        df = pd.DataFrame(black_list, columns=["url"])
         # csv로 저장
         save_csv(df)
         # 결과 반환하기
