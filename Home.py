@@ -28,9 +28,10 @@ if user_prompt :
     st.session_state.messages.append({'role' : 'user', 'content' : user_prompt})
     with st.chat_message('user') :
         st.markdown(user_prompt)
-
-    agent = Agent(client)
-    response = agent.chat(user_prompt)
+        
+    with st.spinner("GPT 판단 중..."):
+        agent = Agent(client)
+        response = agent.chat(user_prompt)
 
     # AI 응답 출력
     with st.chat_message('assistant') :
