@@ -1,6 +1,6 @@
 import json, openai, os, importlib, streamlit as st
 from dotenv import load_dotenv
-from main import Agent
+from agent import Agent
 
 # 환경변수 불러오기 및 OpenAI API Key 설정
 load_dotenv()
