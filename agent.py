@@ -146,7 +146,6 @@ class Agent:
         
         # function_call이 있는 경우 처리
         self.function_call(response.output)
-        print(self.messages)
 
         # function_call 결과 포함해서 최종 응답 생성
         final_response = self.client.responses.create(
