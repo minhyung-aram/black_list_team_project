@@ -11,6 +11,7 @@ client = openai.OpenAI(api_key=OPEN_API_KEY)    # OpenAI 클라이언트를 생�
 
 # 하위 에이전트 함수 정의
 # 악성 URL 판단 결과에 기반한 OpenAI 응답 생성 
+
 def agent_call(url):
     client = openai.OpenAI(api_key=OPEN_API_KEY)
     store_id = vector_store_with_file(
@@ -56,7 +57,8 @@ class Agent:
         self.tools = [{
             "type": "function",
             "name": "agent_call",
-            "description": "사용자로부터 악성 URL 관련 판단 질문을 받으면 URL 검사와 리포팅을 위해 하위 에이전트를 호출하는 함수입니다.",
+            "description": "사용자로부터 악성 URL 관련 판단 질문을 받으면 \
+                URL 검사와 리포팅을 위해 하위 에이전트를 호출하는 함수입니다.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -83,7 +85,7 @@ class Agent:
                 악성 URL에 대한 질문이 들어오면 Function call을 이용해 사용자의 입력으로부터 URL을 건내주어 응답을 받아야 합니다.\
                 Function call에선 하위 에이전트가 URL을 분석해서 당신에게 리포팅을 해줄 것이며 당신은 그 결과를 받고\
                 정상이면 그냥 답변하면 되고, 블랙리스트에 존재하면 블랙리스트에 관해서 얘기해주고 블랙리스트에 존재하는 악성 url이라고 하면됩니다.\
-                블랙리스트는 악성 url이 담겨있는 리스트입니다. 모델 결과 악성 url로 판단되면 하위 에이전트의 리포트를 참조하여 사용자에게 알려주세요.\
+                블랙리스트에 없는데 모델이 악성 url이라 판단하면 해당 사실을 알려주세요. 모델 결과 악성 url로 판단되면 하위 에이전트의 리포트를 참조하여 사용자에게 알려주세요.\
                 그리고 Websearch 툴을 사용하여 대안 사이트 3~4개를 추천해주세요. 이때 사용자에게 목적을 물어보고\
                 목적이 확인되면 일반적이고 대중적인 사이트를 추천해주세요."
             }
