@@ -25,14 +25,14 @@ def extract_url_features(url) :
     # 기본 URL 기반 Feature
     feature['url_length'] = int(len(url) > 75)                                      # URL 전체 문자열 길이
     feature['num_dots'] = np.log1p(url.count('.'))                                  # URL 내 점(.)의 개수
-    feature['has_ip'] = int(bool(re.search(r'\d+\.\d+\.\d+\.\d+', url)))            # IP 주소 포함 여부  
+    feature['has_ip'] = int(bool(re.search(r'\d+\.\d+\.\d+\.\d+', url)))            # IP 주소 포함 여부
     feature['num_special_chars'] = int(len(re.findall(r'[^\w]', url)) > 5)          # 특수문자 수 (@, ?, =, % 등)
     feature['has_at_symbol'] = int('@' in url)                                      # @ 기호 포함 여부
     feature['path_length'] = np.log1p(len(parsed.path))                             # URL 경로 길이
     feature['num_digits'] = np.log1p(len(re.findall(r'\d', url)))                   # 숫자 개수
 
     return feature
-    
+
 if __name__ == '__main__' :
     # 데이터 전처리
     # 데이터 불러오기
@@ -60,10 +60,10 @@ if __name__ == '__main__' :
 
     # XGBoost 모델 생성 및 학습
     # 참고 자료 : 논문 - URL 주요특징을 고려한 악성URL 머신러닝 탐지모델 개발 - 김영준, 이재우
-    # Extreme Gradient Boosting : Gradient Boosting 기법 확장 알고리즘  여러 개의 약한 모델을 순차적으로 학습해서 오류를 보완하며 성능을 높이는 방식 ➡️ 정확도와 실행 속도 사이의 균형이 뛰어남
+    # Extreme Gradient Boosting : Gradient Boosting 기법 확장 알고리즘  여러 개의 약한 모델을 순차적으로 학습해서 오류를 보완하며 성능을 높이는 방식 -> 정확도와 실행 속도 사이의 균형이 뛰어남
     # 학습 방식 : 각 트리는 이전까지의 예측이 틀린 부분을 "집요하게 물고 늘어져서" 전체 성능을 개선함
 
-    # 피싱 URL 탐지에서 유리한 이유 : 
+    # 피싱 URL 탐지에서 유리한 이유 :
     # 다양한 URL 특성(길이, 도메인 구조, 키워드 포함 여부 등)은 복잡하고 상호작용 많음  XGBoost는 이런 비선형적 관계를 잘 포착하며 특성 간 조합도 자동으로 학습함
     xgb_model = XGBClassifier(
         n_estimators=200,           # 부스팅할 트리 개수 : 많을수록 모델 복잡도와 과적합 가능성 증가
@@ -72,8 +72,9 @@ if __name__ == '__main__' :
         random_state = 42,          # 난수 고정
         use_label_encoder=False,    # 라벨 인코더 사용 여부
         eval_metric='logloss',      # 평가 지표 설정 : 로그 손실 함수, 작을수록 예측 확률이 정답에 가까움
-        n_jobs=-1,                  # 사용할 CPU 쓰레드 수 : -1 : 모든 코어 사용
-    )
+        tree_method='gpu_hist',     # 히스토그램 기반 분할 알고리즘 사용 → 속도 빠르고 대용량 데이터에 효율적
+        device='cuda'               # GPU(CUDA) 사용하여 학습 속도 향상 (GPU 가속)
+        )
 
     xgb_model.fit(X_train, y_train)
 
