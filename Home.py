@@ -7,8 +7,8 @@ load_dotenv()
 OPEN_API_KEY = os.getenv("OPEN_API_KEY")
 
 # Streamlit UI
-st.title('PhishGuard Chat')
-st.text('악성 URL을 판별하고 안전한 대안을 안내해주는 AI 보안 챗봇 서비스가 오픈되었습니다! 🎉')
+st.title('PhishingGuard Chat')
+st.text('악성 URL을 판별하고 안전한 대안을 안내해주는 AI 보안 어시스턴트 서비스가 오픈되었습니다! 🎉')
 
 # 대화 기록 초기화
 if 'messages' not in st.session_state:
