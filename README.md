@@ -60,7 +60,7 @@ XGBoost.py를 실행한다.
 6. 에이전트 상호작용
 <img width="1236" height="767" alt="Image" src="https://github.com/user-attachments/assets/66fe3c79-303c-40c3-839b-0a910bcd00f6" />
 <img width="1236" height="797" alt="Image" src="https://github.com/user-attachments/assets/95c7bcc2-bf6c-4b8e-bd23-745cb223e326" />
-<img width="1236" height="397" alt="Image" src="https://github.com/user-attachments/assets/2e7584b9-7361-4f78-9e03-c8d48f858381" />
+<img width="1236" height="515" alt="Image" src="https://github.com/user-attachments/assets/545d6c06-a2de-4ef6-a590-5273967ae899" />
 
 7. 사용자 가이드
 https://github.com/minhyung-aram/black_list_team_project.git, git clone하기
