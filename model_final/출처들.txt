@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 데이터셋 출처
 Malicious URLs dataset - Kaggle
 https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset
@@ -12,8 +11,6 @@ UC Irvine Machine Learning Repository - Phishing Websites Donated on 3/25/2015
 (University of California, Irvine)
 https://archive.ics.uci.edu/dataset/327/phishing+websites
 
-
-=======
 데이터셋 출처
 Malicious URLs dataset - Kaggle
 https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset
@@ -26,6 +23,3 @@ feature 기준 선정 근거
 UC Irvine Machine Learning Repository - Phishing Websites Donated on 3/25/2015
 (University of California, Irvine)
 https://archive.ics.uci.edu/dataset/327/phishing+websites
-
-
->>>>>>> ab1b090fb6230e7d8a646983a0e3912ee63b347c
